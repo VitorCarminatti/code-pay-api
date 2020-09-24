@@ -6,6 +6,8 @@ ruby '2.7.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'devise'
+gem 'devise-token_authenticatable'
 gem 'graphql', '1.9.18'
 gem 'jwt'
 gem 'pg', '>= 0.18', '< 2.0'

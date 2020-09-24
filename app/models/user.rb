@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-  validates :name, :email, :password, :password_confirmation, presence: true
-  validates :email, uniqueness: { message: "já cadastrado" } 
-  validate :password_match
+  include Interface
 
-  enum role: %i[CLIENTE ADMIN CAIXA BAR]
+  enum role: %i[CLIENTE ADMIN BAR CAIXA]
+  
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :database_authenticatable, :token_authenticatable
 
-  private
-
-  def password_match
-    self.errors[:senhas] << "não coincidem" if password != password_confirmation
-  end
+  validates :first_name, :last_name, presence: true
 end
