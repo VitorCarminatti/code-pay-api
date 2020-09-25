@@ -4,10 +4,10 @@ module Mutations
   class SignIn < Mutations::BaseMutation
     graphql_name "SignIn"
 
-    argument :email, String, required: true
+    argument :email,    String, required: true
     argument :password, String, required: true
 
-    field :user, Types::UserType, null: false
+    field :user, Types::UserType, null: true
 
     def resolve(args)
       user = User.find_for_database_authentication(email: args[:email])
@@ -17,10 +17,10 @@ module Mutations
           context[:current_user] = user
           MutationResult.call(obj: { user: user }, success: true)
         else
-          GraphQL::ExecutionError.new("Incorrect Email/Password")
+          MutationResult.call(success: false, errors: ["Email ou senha inválidos"])
         end
       else
-        GraphQL::ExecutionError.new("User not registered on this application")
+        GraphQL::ExecutionError.new("Usuário não existe")
       end
     end
   end

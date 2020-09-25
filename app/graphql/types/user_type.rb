@@ -17,7 +17,7 @@ module Types
 
     field :role,  String, null: false
 
-    field :authentication_token, String, null: false
+    field :authentication_token, String, null: true
 
     def authentication_token
       if object.gql_id != context[:current_user]&.gql_id
