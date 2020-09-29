@@ -20,7 +20,7 @@ module Mutations
           MutationResult.call(success: false, errors: ["Email ou senha inválidos"])
         end
       else
-        GraphQL::ExecutionError.new("Usuário não existe")
+        MutationResult.call(success: false, errors: ["Usuário não existe"])
       end
     end
   end
