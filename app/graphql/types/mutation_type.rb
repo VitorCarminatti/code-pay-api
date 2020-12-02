@@ -3,6 +3,7 @@
 module Types
   class MutationType < Types::BaseObject
     field :register_user,     mutation: Mutations::RegisterUser
+    field :update_user,       mutation: Mutations::UpdateUser
     field :sign_in,           mutation: Mutations::SignIn
     field :sign_out,          mutation: Mutations::SignOut
 
